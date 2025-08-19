@@ -191,13 +191,13 @@ function getCurrentCityTime(timezoneOffsetSec) {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden flex items-center justify-center p-8 md:p-0">
+    <div className="min-h-screen overflow-hidden flex flex-col md:flex-row items-center justify-center p-4 md:p-8 relative">
       {/* Background */}
 
       <WeatherBackground 
         weatherType={weatherData?.weatherDetail} 
         dayOrNight={weatherData?.dOrN}
-        className="w-full h-full object-cover blur-sm opacity-80"
+        className="w-full h-full object-cover blur-sm opacity-80 fixed top-0 left-0 z-0"
          />
 
         {weatherData?.rainChances > 0 && (
@@ -226,32 +226,32 @@ function getCurrentCityTime(timezoneOffsetSec) {
       
 
       {/* Foreground Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-center z-10 backdrop-blur-xl shadow-lg rounded-2xl border border-white/20 dark:border-white/10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center z-10 backdrop-blur-xl shadow-lg rounded-2xl border border-white/20 dark:border-white/10 w-full max-w-3xl">
         <div className="flex flex-col md:rounded-l-xl  p-4 border-b-1 md:border-b-0 md:border-r-1 border-primary">
-          <div className="flex justify-center border border-primary rounded-full">
+          <div className="flex justify-center border border-primary rounded-full mb-4">
             <input
               ref={inputRef}
               type="text"
               placeholder="Enter City Name..."
-              className="w-full px-4 py-2 focus:outline-none text-primary"
+              className="flex-1 px-4 py-2 focus:outline-none text-primary rounded-l-full"
             />
             <button
               onClick={() => search(inputRef.current.value)}
-              className="px-4 py-2 flex items-center justify-center"
+              className="px-4 py-2 flex items-center justify-center rounded-r-full"
             >
-              <FaSearch className="w-8 h-4 hover:scale-120 text-primary" />
+              <FaSearch size={20} className="text-primary hover:scale-110 transition-transform" />
             </button>
           </div>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center mb-4">
             <Icons
               description={weatherData?.weatherDetail}
               dayOrNight={weatherData?.dOrN}
-              className="w-48 h-48 drop-shadow-lg p-4"
+              className="w-36 h-36 md:w-48 md:h-48 drop-shadow-lg p-4"
             />
 
             <div className="font-bold text-primary flex items-center">
-              <WiThermometer className="w-12 h-12 text-primary" />
-              <p className="text-3xl">{weatherData?.temprature}</p>
+              <WiThermometer className="w-10 h-10 md:w-12 md:h-12 text-primary" />
+              <p className="text-2xl md:text-3xl">{weatherData?.temprature}</p>
               <span className="text-2xl text-primary">°C</span>
             </div>
           </div>
@@ -264,9 +264,9 @@ function getCurrentCityTime(timezoneOffsetSec) {
               <Icons
                 description={weatherData?.weatherDetail}
                 dayOrNight={weatherData?.dOrN}
-                className="w-16 h-16 drop-shadow-lg p-4"
+                className="w-12 h-12 md:w-16 md:h-16 drop-shadow-lg p-2 md:p-4"
               />
-              <p className="text-primary font-semibold capitalize">
+              <p className="text-primary font-semibold capitalize text-sm md:text-md">
                 {weatherData?.weatherMain}, {weatherData?.weatherDetail}
               </p>
             </div>
@@ -276,9 +276,9 @@ function getCurrentCityTime(timezoneOffsetSec) {
                 <img
                   src={`/weather/weather-icons/rainChances.png`}
                   alt="Rain"
-                  className="w-16 h-16 drop-shadow-lg p-4"
+                  className="w-12 h-12 md:w-16 md:h-16 drop-shadow-lg p-2 md:p-4"
                 />
-                <p className="text-primary font-semibold capitalize">
+                <p className="text-primary font-semibold capitalize text-sm md:text-md">
                   Rain - {weatherData?.rainChances}%
                 </p>
               </div>
@@ -287,74 +287,65 @@ function getCurrentCityTime(timezoneOffsetSec) {
           </div>
 
           <div className="flex items-center justify-center mx-auto">
-            <div className="relative w-48 h-24">
+            <div className="relative w-full max-w-xs h-24">
               <img
                 src="./city.png"
                 alt="City Name"
-                className="rounded-xl w-full h-full"
+                className="rounded-xl w-full h-full object-cover"
               />
-              <p className="absolute inset-0 flex items-center justify-center bg-cardBackground/70 brightness-125 text-primary text-xl font-semibold rounded-xl">
+              <p className="absolute inset-0 flex items-center justify-center bg-cardBackground/70 brightness-125 text-primary text-xl md:text-2xl font-semibold rounded-xl">
                 {weatherData?.location}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="md:rounded-r-xl p-8 space-y-3 items-center justify-center w-sm">
+        <div className="md:rounded-r-xl p-4 md:p-8 space-y-4 w-full md:w-auto">
           <h1 className="text-primary/80 text-2xl">Today's Highlight</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-            <div className="col-span-3 bg-white/10 dark:bg-black/20 
-  backdrop-blur-md 
-  border border-white/20 dark:border-white/10 
-  shadow-md rounded-xl p-4 space-y-2 ">
+            <div className="col-span-3 bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 
+                            shadow-md rounded-xl p-4 space-y-2 ">
               <h1 className="text-md text-primary">Weather Details</h1>
 
-              <div className="flex gap-2 justify-evenly">
-                <div className="space-y-2">
+              <div className="flex gap-2 flex-wrap justify-evenly">
+                <div className="space-y-1">
                   <p className="text-xs text-primary">Wind Speed</p>
-                  <div className="flex gap-2">
-                    <FaWind
-                      title="Wind Speed"
-                      className="text-blue-500 text-2xl"
-                    />
-                    <div className="flex items-center justify-center">
-                      <h1 className="text-primary text-lg font-semibold">
+                  <div className="flex gap-2 items-center justify-center">
+                    <FaWind title="Wind Speed" className="text-blue-500 text-2xl"/>
+                    <h1 className="text-primary text-lg md:text-xl font-semibold">
                         {weatherData?.windSpeed}
-                        <span className="text-xl text-primaryr"> m/s</span>
+                        <span className="text-sm md:text-md"> m/s</span>
                       </h1>
-                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="text-xs text-primary">Humidity</p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center justify-center">
                     <FaTint
                       title="Humidity"
                       className="text-blue-500 text-2xl"
                     />
-                    <div className="flex items-center justify-center">
-                      <h1 className="text-primary text-lg font-bold">
+                    <h1 className="text-primary text-lg md:text-xl font-semibold">
                         {weatherData?.humidity}
-                        <span className="text-md text-primaryr">%</span>
+                        <span className="text-sm md:text-md">%</span>
                       </h1>
-                    </div>
+                    
                   </div>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <p className="text-xs text-primary">Visibility</p>
-                  <div className="flex gap-2 justify-center">
+                  <div className="flex gap-2 items-center justify-center">
                     <FaEye
                       title="Visibility"
                       className="text-blue-500 text-2xl"
                     />
-                    <div className="flex items-center justify-center">
-                      <h1 className="text-primary text-lg font-bold">
+                    <h1 className="text-primary text-lg md:text-xl font-semibold">
                         {weatherData?.visibility}
                         <span className="text-sm text-primaryr"> km</span>
-                      </h1>
-                    </div>
+                     </h1>
+                    
                   </div>
                 </div>
               </div>
@@ -369,10 +360,8 @@ function getCurrentCityTime(timezoneOffsetSec) {
               </div>
             </div>
 
-            <div className="col-span-3 bg-white/10 dark:bg-black/20 
-  backdrop-blur-md 
-  border border-white/20 dark:border-white/10 
-  shadow-md rounded-xl p-4 space-y-2">
+            <div className="col-span-3 bg-white/10 dark:bg-black/20 backdrop-blur-md border
+                           border-white/20 dark:border-white/10 shadow-md rounded-xl p-4 space-y-2">
               <h1 className="text-md  text-primary">Sunrise & Sunset</h1>
               <div className="flex items-center justify-center p-2">
                 <SunriseSunset
