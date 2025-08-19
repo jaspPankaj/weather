@@ -35,11 +35,11 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="/weather/assets/screenshot1.png" alt="Weather Dashboard Screenshot" width="80%"/>
+ <img width="1878" height="869" alt="screenshot1" src="https://github.com/user-attachments/assets/cc42ca7f-1743-462a-b581-df30b2a46037" />
 </p>
 
 <p align="center">
-  <img src="/weather/assets/screenshot2.png" alt="Dark Mode Weather Dashboard" width="80%"/>
+  <img width="1877" height="857" alt="screenshot2" src="https://github.com/user-attachments/assets/50d5eab5-6d2a-4066-9bc9-bab458dad04c" />
 </p>
 
 ---
