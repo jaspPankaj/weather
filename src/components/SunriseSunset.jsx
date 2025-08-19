@@ -53,10 +53,10 @@ export default function SunriseSunset({ sunrise, sunset, timezone , currentTime 
       </svg>
 
       {/* Labels */}
-      <span className="absolute left-2 bottom-0 text-xs text-primary flex justify-center items-center gap-1">
+      <span className="absolute left-3 bottom-0 text-xs text-primary flex justify-center items-center gap-1">
         <WiSunrise  className="w-6 h-6 text-blue-400"/>{fmt(sunrise)}
       </span>
-      <span className="absolute right-1 bottom-0 text-xs text-primary flex justify-center items-center gap-1">
+      <span className="absolute right-3 bottom-0 text-xs text-primary flex justify-center items-center gap-1">
         <WiSunset className="w-6 h-6 text-yellow-400" />{fmt(sunset)}
       </span>
 

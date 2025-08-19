@@ -10,6 +10,7 @@ import { WiStrongWind } from "react-icons/wi";
 import { FaWind, FaTint, FaEye ,FaClock } from "react-icons/fa";
 import { WeatherBackground } from "./WeatherBackground";
 import SnowBackground from "./SnowBackground";
+import { toast } from "react-toastify";
 
 export const WeatherInfo = () => {
   //make a variable to use input currentWeather
@@ -42,7 +43,7 @@ export const WeatherInfo = () => {
 
       let forecastUrl;
 
-      if (city != null) {
+      if (city) {
         forecastUrl = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${api_key}`
         );
@@ -58,6 +59,7 @@ export const WeatherInfo = () => {
       updateWeather(fiveDayWeather);
     } catch (error) {
       console.error("Fetching Error :", error);
+      toast.error("⚠️ "+ city +" not found! Check name of city 🚫");
     }
   };
 
@@ -88,7 +90,6 @@ function getCurrentCityTime(timezoneOffsetSec) {
 
   const updateWeather = (fiveDayWeather) => {
     const currentWeather = fiveDayWeather.list[0];
-    console.log(fiveDayWeather);
     
     const formattedDate = getCurrentCityTime(fiveDayWeather.city.timezone)
     //set Formated Date
@@ -104,7 +105,7 @@ function getCurrentCityTime(timezoneOffsetSec) {
     } else {
       document.documentElement.classList.add("dark"); // Night mode
     }
-
+    const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
     //set weather Data
     setWeatherData({
       temprature: currentWeather.main.temp,
@@ -114,12 +115,13 @@ function getCurrentCityTime(timezoneOffsetSec) {
       weatherDetail: currentWeather.weather[0].description,
       icon: currentWeather.weather[0].icon,
       rainChances: Math.floor(currentWeather.pop * 100),
-      visibility: currentWeather.visibility / 1000,
+      visibility: Math.floor(currentWeather.visibility / 1000),
       dOrN: currentWeather.sys.pod,
       deg: currentWeather.wind.deg,
 
       timezone: fiveDayWeather.city.timezone,
       location: fiveDayWeather.city.name,
+      country : regionNames.of(fiveDayWeather.city.country),
       sunrise: fiveDayWeather.city.sunrise,
       sunset: fiveDayWeather.city.sunset,
       currentTime: currentWeather.dt,
@@ -286,15 +288,15 @@ function getCurrentCityTime(timezoneOffsetSec) {
 
           </div>
 
-          <div className="flex items-center justify-center mx-auto">
+          <div className="flex items-center justify-center mx-auto w-full">
             <div className="relative w-full max-w-xs h-24">
               <img
                 src="./city.png"
                 alt="City Name"
                 className="rounded-xl w-full h-full object-cover"
               />
-              <p className="absolute inset-0 flex items-center justify-center bg-cardBackground/70 brightness-125 text-primary text-xl md:text-2xl font-semibold rounded-xl">
-                {weatherData?.location}
+              <p className="absolute inset-0 flex items-center justify-center bg-cardBackground/70 brightness-125 text-primary text-md md:text-lg font-semibold rounded-xl p-2">
+                {weatherData?.location}, {weatherData?.country}
               </p>
             </div>
           </div>

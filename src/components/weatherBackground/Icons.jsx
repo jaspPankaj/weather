@@ -155,7 +155,7 @@ export const Icons = ({ description, dayOrNight ,className}) => {
     <div className="flex justify-center">
       {iconMap[description] || (
         <img
-          src={`/weather/weather-icons/default-${dayOrNight}.png`}
+          src={`/weather/weather-icons/default.png`}
           alt="default"
           className={className}
         />
