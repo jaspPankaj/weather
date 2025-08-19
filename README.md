@@ -35,11 +35,11 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="assets/screenshot1.png" alt="Weather Dashboard Screenshot" width="80%"/>
+  <img src="/weather/assets/screenshot1.png" alt="Weather Dashboard Screenshot" width="80%"/>
 </p>
 
 <p align="center">
-  <img src="assets/screenshot2.png" alt="Dark Mode Weather Dashboard" width="80%"/>
+  <img src="/weather/assets/screenshot2.png" alt="Dark Mode Weather Dashboard" width="80%"/>
 </p>
 
 ---
