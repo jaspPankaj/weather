@@ -11,7 +11,7 @@ export default defineConfig({
       "@":Path.resolve(__dirname,"./src")
     }
   },
-  base: '/weatherApp/' ,
+  base: '/weather/' ,
 })
 
 

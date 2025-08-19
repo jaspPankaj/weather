@@ -274,7 +274,7 @@ function getCurrentCityTime(timezoneOffsetSec) {
             {weatherData?.rainChances > 0 && (
               <div className="flex gap-2 items-center">
                 <img
-                  src={`/weatherApp/weather-icons/rainChances.png`}
+                  src={`/weather/weather-icons/rainChances.png`}
                   alt="Rain"
                   className="w-16 h-16 drop-shadow-lg p-4"
                 />
